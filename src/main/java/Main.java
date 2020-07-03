@@ -55,23 +55,17 @@ public class Main {
         answers.add(answer11);
         answers.add(answer12);
 
-        Integer idQuestion = 0;
         Integer idAnswer;
-        for (int i = 0; i < questions.size(); i++) {
-            if (questions.get(i).idQuestion == 1) {
-                idQuestion = questions.get(i).idQuestion;
-                System.out.println(questions.get(i).question);
-                break;
-            }
-        }
+
+        Conversation conversation=new Conversation(questions, answers);
+        System.out.println(conversation.getStartQuestion());
 
         Scanner scan = new Scanner(System.in);
 
+        Integer idQuestion = conversation.getStartIdQuestion();
         do {
-            for (int i = 0; i < answers.size(); i++) {
-                if (answers.get(i).idPrevQuestion == idQuestion) {
-                    System.out.println(answers.get(i).answer + " [" + answers.get(i).idAnswer + "]");
-                }
+            for (int i = 0; i < conversation.getAnswersToQuestion(idQuestion).size(); i++) {
+                System.out.println(conversation.getAnswersToQuestion(idQuestion).get(i));
             }
             System.out.println("Ktora odpowiedz: ");
             idAnswer = Integer.parseInt(scan.nextLine());//1
