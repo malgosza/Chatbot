@@ -71,12 +71,8 @@ public class Main {
             idAnswer = Integer.parseInt(scan.nextLine());//1
             idQuestion=answers.get(idAnswer-1).idNextQuestion;//2
 
-            for (int i = 0; i < questions.size(); i++) {
-                if (questions.get(i).idQuestion == idQuestion) {
-                    System.out.println(questions.get(i).question);
-                    break;
-                }
-            }
+            System.out.println(conversation.getCurrentQuestion(idQuestion));
+            
         }while (answers.get(idAnswer-1).idNextQuestion!=null);
     }
 }
