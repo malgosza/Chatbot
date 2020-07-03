@@ -4,22 +4,29 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Question question1 = new Question(1, "Jak sie masz?", null);
-        Question question2 = new Question(2, "Co robiłeś dziś?", 1);
-        Question question3 = new Question(3, "Co można poprawić?", 2);
-        Question question4 = new Question(4, "Jutro bedzie lepiej. Moze cos porobimy?", 3);
-        Question question5 = new Question(5, "Duzo zjadles??", 4);
+        Question question1 = new Question(1, "Jak sie masz?");
+        Question question2 = new Question(2, "Co robiłeś dziś?");
+        Question question3 = new Question(3, "Co można poprawić?");
+        Question question4 = new Question(4, "Jutro bedzie lepiej. Moze cos porobimy?");
+        Question question5 = new Question(5, "Duzo zjadles?");
+        Question question6 = new Question(6, "Aha to miłego dnia");
 
-        Answer answer1 = new Answer(1, "OK", 1);
-        Answer answer2 = new Answer(2, "Mogloby byc lepiej", 1);
-        Answer answer3 = new Answer(3, "Fatalnie", 1);
+        Answer answer1 = new Answer(1, "OK", 1, 2);
+        Answer answer2 = new Answer(2, "Mogloby byc lepiej", 1,3);
+        Answer answer3 = new Answer(3, "Fatalnie", 1,4);
 
-        Answer answer4 = new Answer(4, "jadlem", 2);
-        Answer answer5 = new Answer(5, "spalem", 2);
-        Answer answer6 = new Answer(6, "grałem", 2);
+        Answer answer4 = new Answer(4, "jadlem", 2,5);
+        Answer answer5 = new Answer(5, "spalem", 2,null);
+        Answer answer6 = new Answer(6, "grałem", 2,null);
 
-        Answer answer7 = new Answer(7, "tak", 5);
-        Answer answer8 = new Answer(8, "nie", 5);
+        Answer answer7 = new Answer(7, "tak", 5, null);
+        Answer answer8 = new Answer(8, "nie", 5, null);
+
+        Answer answer9 = new Answer(9, "nic", 3, null);
+        Answer answer10 = new Answer(10, "wszystko", 3, null);
+
+        Answer answer11 = new Answer(11, "tak", 4, null);
+        Answer answer12 = new Answer(12, "nie", 4, null);
 
         List<Question> questions = new ArrayList<>();
         List<Answer> answers = new ArrayList<>();
@@ -29,6 +36,7 @@ public class Main {
         questions.add(question3);
         questions.add(question4);
         questions.add(question5);
+        questions.add(question6);
 
         answers.add(answer1);
         answers.add(answer2);
@@ -41,32 +49,40 @@ public class Main {
         answers.add(answer7);
         answers.add(answer8);
 
-        int idQuestion = 0;
+        answers.add(answer9);
+        answers.add(answer10);
+
+        answers.add(answer11);
+        answers.add(answer12);
+
+        Integer idQuestion = 0;
         Integer idAnswer;
         for (int i = 0; i < questions.size(); i++) {
-            if (questions.get(i).idAnswer == null) {
+            if (questions.get(i).idQuestion == 1) {
                 idQuestion = questions.get(i).idQuestion;
                 System.out.println(questions.get(i).question);
+                break;
             }
         }
 
+        Scanner scan = new Scanner(System.in);
+
         do {
             for (int i = 0; i < answers.size(); i++) {
-                if (answers.get(i).idQuestion == idQuestion) {
+                if (answers.get(i).idPrevQuestion == idQuestion) {
                     System.out.println(answers.get(i).answer + " [" + answers.get(i).idAnswer + "]");
                 }
             }
-            Scanner scan = new Scanner(System.in);
             System.out.println("Ktora odpowiedz: ");
-            idAnswer = Integer.parseInt(scan.nextLine());
+            idAnswer = Integer.parseInt(scan.nextLine());//1
+            idQuestion=answers.get(idAnswer-1).idNextQuestion;//2
 
             for (int i = 0; i < questions.size(); i++) {
-                Integer xd = questions.get(i).idAnswer;
-                if (xd == idAnswer) {
-                    idQuestion = questions.get(i).idQuestion;
+                if (questions.get(i).idQuestion == idQuestion) {
                     System.out.println(questions.get(i).question);
+                    break;
                 }
             }
-        }while (answers.get(idAnswer).idQuestion!=null);
+        }while (answers.get(idAnswer-1).idNextQuestion!=null);
     }
 }

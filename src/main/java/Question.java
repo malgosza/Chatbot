@@ -1,11 +1,9 @@
 public class Question {
-    int idQuestion;
+    Integer idQuestion;
     String question;
-    Integer idAnswer;
 
-    public Question(int idQuestion, String question,Integer idAnswer){
+    public Question(Integer idQuestion, String question){
         this.idQuestion=idQuestion;
         this.question=question;
-        this.idAnswer=idAnswer;
     }
 }

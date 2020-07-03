@@ -1,11 +1,13 @@
 public class Answer {
     int idAnswer;
     String answer;
-    Integer idQuestion;
+    Integer idPrevQuestion;
+    Integer idNextQuestion;
 
-    public Answer(int idAnswer,String answer,Integer idQuestion){
+    public Answer(int idAnswer,String answer,Integer idPrevQuestion, Integer idNextQuestion){
         this.idAnswer=idAnswer;
         this.answer=answer;
-        this.idQuestion=idQuestion;
+        this.idPrevQuestion=idPrevQuestion;
+        this.idNextQuestion=idNextQuestion;
     }
 }
