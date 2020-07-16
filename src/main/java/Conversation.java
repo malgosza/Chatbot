@@ -10,32 +10,6 @@ public class Conversation {
         this.answers=answers;
     }
 
-    public String getStartQuestion() {
-
-        String textQuestion = "";
-
-        for (int i = 0; i < questions.size(); i++) {
-            if (questions.get(i).idQuestion == getStartIdQuestion()) {
-                textQuestion = questions.get(i).question;
-                break;
-            }
-        }
-        return textQuestion;
-    }
-
-    public Integer getStartIdQuestion(){
-
-        Integer idQuestion = 0;
-
-        for (int i = 0; i < questions.size(); i++) {
-            if (questions.get(i).idQuestion == 1) {
-                idQuestion = questions.get(i).idQuestion;
-                break;
-            }
-        }
-        return idQuestion;
-    }
-
     public List<String> getAnswersToQuestion(Integer currentIdQuestion){
 
         List<String> answersToQuestion=new ArrayList<>();

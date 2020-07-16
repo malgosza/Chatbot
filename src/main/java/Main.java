@@ -58,11 +58,11 @@ public class Main {
         Integer idAnswer;
 
         Conversation conversation=new Conversation(questions, answers);
-        System.out.println(conversation.getStartQuestion());
+        System.out.println(conversation.getCurrentQuestion(1));
 
         Scanner scan = new Scanner(System.in);
 
-        Integer idQuestion = conversation.getStartIdQuestion();
+        Integer idQuestion = 1;
         do {
             for (int i = 0; i < conversation.getAnswersToQuestion(idQuestion).size(); i++) {
                 System.out.println(conversation.getAnswersToQuestion(idQuestion).get(i));
