@@ -14,9 +14,9 @@ public class Conversation {
 
         List<String> answersToQuestion=new ArrayList<>();
 
-        for (int i = 0; i < answers.size(); i++) {
-            if (answers.get(i).idPrevQuestion == currentIdQuestion) {
-                answersToQuestion.add(answers.get(i).answer + " [" + answers.get(i).idAnswer + "]");
+        for (Answer answer : answers) {
+            if (answer.idPrevQuestion.equals(currentIdQuestion)) {
+                answersToQuestion.add(answer.answer + " [" + answer.idAnswer + "]");
             }
         }
 
@@ -24,9 +24,9 @@ public class Conversation {
     }
 
     public String getCurrentQuestion(Integer idQuestion){
-        for (int i = 0; i < questions.size(); i++) {
-            if (questions.get(i).idQuestion == idQuestion) {
-                return questions.get(i).question;
+        for (Question question : questions) {
+            if (question.idQuestion.equals(idQuestion)) {
+                return question.question;
             }
         }
         return "";
