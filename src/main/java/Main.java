@@ -12,12 +12,12 @@ public class Main {
         Question question6 = new Question(6, "Aha to miłego dnia");
 
         Answer answer1 = new Answer(1, "OK", 1, 2);
-        Answer answer2 = new Answer(2, "Mogloby byc lepiej", 1,3);
-        Answer answer3 = new Answer(3, "Fatalnie", 1,4);
+        Answer answer2 = new Answer(2, "Mogloby byc lepiej", 1, 3);
+        Answer answer3 = new Answer(3, "Fatalnie", 1, 4);
 
-        Answer answer4 = new Answer(4, "jadlem", 2,5);
-        Answer answer5 = new Answer(5, "spalem", 2,null);
-        Answer answer6 = new Answer(6, "grałem", 2,null);
+        Answer answer4 = new Answer(4, "jadlem", 2, 5);
+        Answer answer5 = new Answer(5, "spalem", 2, null);
+        Answer answer6 = new Answer(6, "grałem", 2, null);
 
         Answer answer7 = new Answer(7, "tak", 5, null);
         Answer answer8 = new Answer(8, "nie", 5, null);
@@ -55,24 +55,25 @@ public class Main {
         answers.add(answer11);
         answers.add(answer12);
 
-        Integer idAnswer;
+        Conversation conversation = new Conversation(questions, answers);
 
-        Conversation conversation=new Conversation(questions, answers);
-        System.out.println(conversation.getCurrentQuestion(1));
+        Integer idQuestion = 1;
+
+        System.out.println(conversation.getCurrentQuestion(idQuestion));
 
         Scanner scan = new Scanner(System.in);
 
-        Integer idQuestion = 1;
         do {
-            for (int i = 0; i < conversation.getAnswersToQuestion(idQuestion).size(); i++) {
-                System.out.println(conversation.getAnswersToQuestion(idQuestion).get(i));
+            List<String> answersToQuestion = conversation.getAnswersToQuestion(idQuestion);
+            for (String s : answersToQuestion) {
+                System.out.println(s);
             }
             System.out.println("Ktora odpowiedz: ");
-            idAnswer = Integer.parseInt(scan.nextLine());//1
-            idQuestion=answers.get(idAnswer-1).idNextQuestion;//2
+            int idAnswer = Integer.parseInt(scan.nextLine());
+            idQuestion = answers.get(idAnswer - 1).idNextQuestion;
 
             System.out.println(conversation.getCurrentQuestion(idQuestion));
-            
-        }while (answers.get(idAnswer-1).idNextQuestion!=null);
+
+        } while (idQuestion != null);
     }
 }

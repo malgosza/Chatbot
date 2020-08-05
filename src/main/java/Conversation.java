@@ -24,15 +24,11 @@ public class Conversation {
     }
 
     public String getCurrentQuestion(Integer idQuestion){
-
-        String textQuestion = "";
-
         for (int i = 0; i < questions.size(); i++) {
             if (questions.get(i).idQuestion == idQuestion) {
-                textQuestion=questions.get(i).question;
-                break;
+                return questions.get(i).question;
             }
         }
-        return textQuestion;
+        return "";
     }
 }
